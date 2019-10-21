@@ -259,7 +259,7 @@
                 
               
 
-              <time title="Created: 2019-10-21 17:53:10 / Modified: 18:20:20" itemprop="dateCreated datePublished" datetime="2019-10-21T17:53:10+08:00">2019-10-21</time>
+              <time title="Created: 2019-10-21 17:53:10 / Modified: 18:41:46" itemprop="dateCreated datePublished" datetime="2019-10-21T17:53:10+08:00">2019-10-21</time>
             </span>
           
             
@@ -294,7 +294,7 @@
           <h1 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h1><ul>
 <li><p>HTTP的定义：<br>一种网络传输协议，位于TCP/IP协议族最顶层——应用层</p>
 </li>
-<li><p>HTTP：HyperText Transfer Protocol,超文本传输协议，和 HTML (Hypertext Markup Language 超文本标 记语言) 一起诞生，用于在⽹络上请求和传输 HTML 内容<br>（超文本，即「扩展型文本」，指的是 HTML 中可以有链向别的文本的链接（hyperlink）<br><img src="https://upload-images.jianshu.io/upload_images/18796130-7423a65a5cfce85e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<li><p>HTTP：HyperText Transfer Protocol,超文本传输协议，和 HTML (Hypertext Markup Language 超文本标 记语言) 一起诞生，用于在⽹络上请求和传输 HTML 内容<br>（超文本，即「扩展型文本」，指的是 HTML 中可以有链向别的文本的链接（hyperlink）<br><img src="https://i.imgur.com/668vavI.png" alt></p>
 </li>
 </ul>
 <h3 id="HTTP工作方式："><a href="#HTTP工作方式：" class="headerlink" title="HTTP工作方式："></a>HTTP工作方式：</h3><h6 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h6><p>用户输入地址后回车或点击链接 -&gt; 浏览器拼装 HTTP 报文并发送请求给服务器 -&gt; 服务器处理请求后 发送响应报文给浏览器 -&gt; 浏览器解析响应报文并使用渲染引擎显示到界⾯ </p>
@@ -302,7 +302,7 @@
 <ul>
 <li><h5 id="URL和HTTP的报文"><a href="#URL和HTTP的报文" class="headerlink" title="URL和HTTP的报文"></a>URL和HTTP的报文</h5></li>
 <li>URL格式：<br>三部分：协议类型、服务器地址(和端口号)、路径(Path)<br>协议类型://服务器地址[:端⼝号]路径<br><a href="http://github.com/users?gender=male" target="_blank" rel="noopener">http://github.com/users?gender=male</a></li>
-<li>报文格式<h6 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h6><img src="https://upload-images.jianshu.io/upload_images/18796130-a3d4a28eae338aa3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><h6 id="响应报文"><a href="#响应报文" class="headerlink" title="响应报文"></a>响应报文</h6><img src="https://upload-images.jianshu.io/upload_images/18796130-96b6bfb89884eff0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><h3 id="Request-Method请求方法"><a href="#Request-Method请求方法" class="headerlink" title="Request Method请求方法"></a>Request Method请求方法</h3><h5 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h5></li>
+<li>报文格式<h6 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h6><img src="https://i.imgur.com/FwVDSO7.png" alt><h6 id="响应报文"><a href="#响应报文" class="headerlink" title="响应报文"></a>响应报文</h6><img src="https://i.imgur.com/C5Gxpxg.png" alt><h3 id="Request-Method请求方法"><a href="#Request-Method请求方法" class="headerlink" title="Request Method请求方法"></a>Request Method请求方法</h3><h5 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h5></li>
 <li>用于获取资源</li>
 <li>对服务器数据不进行修改</li>
 <li>不发送body<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET  /users/1  HTTP/1.1 Host: api.github.com</span><br><span class="line">``` </span><br><span class="line">- 对应 Retroﬁt 的代码：</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">@GET(&quot;/users/&#123;id&#125;&quot;) Call&lt;User&gt; getUser(@Path(&quot;id&quot;) String id, @Query(&quot;gender&quot;) String gender);</span><br></pre></td></tr></table></figure>
