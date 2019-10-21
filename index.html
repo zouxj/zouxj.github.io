@@ -259,7 +259,7 @@
                 
               
 
-              <time title="Created: 2019-10-21 17:53:10 / Modified: 18:12:49" itemprop="dateCreated datePublished" datetime="2019-10-21T17:53:10+08:00">2019-10-21</time>
+              <time title="Created: 2019-10-21 17:53:10 / Modified: 18:20:20" itemprop="dateCreated datePublished" datetime="2019-10-21T17:53:10+08:00">2019-10-21</time>
             </span>
           
             
@@ -291,7 +291,131 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h1><ul>
+<li><p>HTTP的定义：<br>一种网络传输协议，位于TCP/IP协议族最顶层——应用层</p>
+</li>
+<li><p>HTTP：HyperText Transfer Protocol,超文本传输协议，和 HTML (Hypertext Markup Language 超文本标 记语言) 一起诞生，用于在⽹络上请求和传输 HTML 内容<br>（超文本，即「扩展型文本」，指的是 HTML 中可以有链向别的文本的链接（hyperlink）<br><img src="https://upload-images.jianshu.io/upload_images/18796130-7423a65a5cfce85e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+</ul>
+<h3 id="HTTP工作方式："><a href="#HTTP工作方式：" class="headerlink" title="HTTP工作方式："></a>HTTP工作方式：</h3><h6 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h6><p>用户输入地址后回车或点击链接 -&gt; 浏览器拼装 HTTP 报文并发送请求给服务器 -&gt; 服务器处理请求后 发送响应报文给浏览器 -&gt; 浏览器解析响应报文并使用渲染引擎显示到界⾯ </p>
+<h5 id="APP"><a href="#APP" class="headerlink" title="APP"></a>APP</h5><p>用户点击或界面自动触发联⽹需求 -&gt; Android 代码调用拼装 HTTP 报文并发送请求到服务器 -&gt; 服务器处理请求后发送响应报文给手机 -&gt; Android 代码处理响应报文并作出相应处理（如储存数据、加工 数据、显示数据到界⾯） </p>
+<ul>
+<li><h5 id="URL和HTTP的报文"><a href="#URL和HTTP的报文" class="headerlink" title="URL和HTTP的报文"></a>URL和HTTP的报文</h5></li>
+<li>URL格式：<br>三部分：协议类型、服务器地址(和端口号)、路径(Path)<br>协议类型://服务器地址[:端⼝号]路径<br><a href="http://github.com/users?gender=male" target="_blank" rel="noopener">http://github.com/users?gender=male</a></li>
+<li>报文格式<h6 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h6><img src="https://upload-images.jianshu.io/upload_images/18796130-a3d4a28eae338aa3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><h6 id="响应报文"><a href="#响应报文" class="headerlink" title="响应报文"></a>响应报文</h6><img src="https://upload-images.jianshu.io/upload_images/18796130-96b6bfb89884eff0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><h3 id="Request-Method请求方法"><a href="#Request-Method请求方法" class="headerlink" title="Request Method请求方法"></a>Request Method请求方法</h3><h5 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h5></li>
+<li>用于获取资源</li>
+<li>对服务器数据不进行修改</li>
+<li>不发送body<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET  /users/1  HTTP/1.1 Host: api.github.com</span><br><span class="line">``` </span><br><span class="line">- 对应 Retroﬁt 的代码：</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">@GET(&quot;/users/&#123;id&#125;&quot;) Call&lt;User&gt; getUser(@Path(&quot;id&quot;) String id, @Query(&quot;gender&quot;) String gender);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h6 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h6><ul>
+<li><p>用于修改资源</p>
+</li>
+<li><p>发送给服务器的内容写在body里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST  /users  HTTP/1.1 Host: api.github.com Content-Type: application/x-www-form-urlencoded Content-Length: 13</span><br><span class="line">name=rengwuxian&amp;gender=male</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对应 Retroﬁt 的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@FormUrlEncoded @POST(&quot;/users&quot;) Call&lt;User&gt; addUser(@Field(&quot;name&quot;) String name, @Field(&quot;gender&quot;) String gender);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h5><ul>
+<li><p>用于修改资源</p>
+</li>
+<li><p>发给服务器的内容写在Body里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PUT  /users/1  HTTP/1.1 Host: api.github.com Content-Type: application/x-www-form-urlencoded Content-Length: 13</span><br><span class="line">gender=female</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对应 Retroﬁt 的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@FormUrlEncoded @PUT(&quot;/users/&#123;id&#125;&quot;) Call&lt;User&gt; updateGender(@Path(&quot;id&quot;) String id, @Field(&quot;gender&quot;) String gender);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h5><ul>
+<li><p>用于删除资源</p>
+</li>
+<li><p>不发送body</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE  /users/1  HTTP/1.1 Host: api.github.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对应 Retroﬁt 的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@DELETE(&quot;/users/&#123;id&#125;&quot;) Call&lt;User&gt; getUser(@Path(&quot;id&quot;) String id, @Query(&quot;gender&quot;) String gender);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h5><ul>
+<li>和 GET 使⽤方法完全相同</li>
+<li>和 GET 唯一区别在于，返回的响应中没有 Body <h5 id="Status-Code-状态码"><a href="#Status-Code-状态码" class="headerlink" title="Status Code 状态码"></a>Status Code 状态码</h5>三位数字，用于对响应结果做出类型化描述（如「获取成功」「内容未找到」）。</li>
+<li>1xx：临时性消息。如：100 （继续发送）、101（正在切换协议） 。</li>
+<li>2xx：成功。最典型的是 200（OK）、201（创建成功）。</li>
+<li>3xx：重定向。如 301（永久移动）、302（暂时移动）、304（内容未改变）。</li>
+<li>4xx：客户端错误。如 400（客户端请求错误）、401（认证失败）、403（被禁⽌）、404（找不到内容）。</li>
+<li>5xx：服务器错误。如 500（服务器内部错误）。</li>
+</ul>
+<h5 id="Heander首部"><a href="#Heander首部" class="headerlink" title="Heander首部"></a>Heander首部</h5><p>作用：HTTP 消息的 metadata</p>
+<h6 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h6><p>目标主机。注意：不是在网络上用于寻址的，而是在⽬标服务器上用于定位子服务器的。</p>
+<h6 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h6><p>指定Body的类型，主要四类：</p>
+<ol>
+<li>text/html<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">请求 Web返回响应的类型，Body 中返回html文本。格式如下</span><br><span class="line">HTTP/1.1 200 OK Content-Type: text/html; charset=utf-8 Content-Length: 853</span><br><span class="line">&lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt;    &lt;meta charset=&quot;utf-8&quot;&gt; ......</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>2.x-www-form-urlencoded<br>Web 页面纯文本表单的提交方式<br><img src="https://i.imgur.com/YX2pMWo.png" alt></p>
+<h6 id="格式如下："><a href="#格式如下：" class="headerlink" title="格式如下："></a>格式如下：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST  /users  HTTP/1.1 Host: api.github.com Content-Type: application/x-www-form-urlencoded Content-Length: 27</span><br><span class="line">name=rengwuxian&amp;gender=male</span><br></pre></td></tr></table></figure>
+
+<h6 id="对应-Retroﬁt-的代码："><a href="#对应-Retroﬁt-的代码：" class="headerlink" title="对应 Retroﬁt 的代码："></a>对应 Retroﬁt 的代码：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@FormUrlEncoded @POST(&quot;/users&quot;) Call&lt;User&gt; addUser(@Field(&quot;name&quot;) String name, @Field(&quot;gender&quot;) String gender);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>multitype/form-data </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> ![image.png](https://upload-images.jianshu.io/upload_images/18796130-11378b445aa78067.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line">- 对应 Retroﬁt 的代码：</span><br><span class="line">@Multipart @POST(&quot;/users&quot;) Call&lt;User&gt; addUser(@Part(&quot;name&quot;) RequestBody name, @Part(&quot;avatar&quot;) RequestBody avatar);</span><br><span class="line">...</span><br><span class="line">RequestBody namePart = RequestBody.create(MediaType.parse(&quot;text/plain&quot;), nameStr); RequestBody avatarPart = RequestBody.create(MediaType.parse(&quot;image/jpeg&quot;), avatarFile); api.addUser(namePart, avatarPart);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>application/json , image/jpeg , application/zip …<br>单项内容（文本或非文本都可以），用于 Web Api 的响应或者 POST / PUT 的请求<br>请求中提交 JSON</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1 Host: hencoder.com Content-Type: application/json; charset=utf-8 Content-Length: 38</span><br><span class="line">&#123;&quot;name&quot;:&quot;rengwuxian&quot;,&quot;gender&quot;:&quot;male&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h6 id="对应-Retroﬁt-的代码：-1"><a href="#对应-Retroﬁt-的代码：-1" class="headerlink" title="对应 Retroﬁt 的代码："></a>对应 Retroﬁt 的代码：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@POST(&quot;/users&quot;) Call&lt;User&gt; addUser(@Body(&quot;user&quot;) User user);</span><br><span class="line">...</span><br><span class="line">// 需要使⽤用 JSON 相关的 Converter api.addUser(user);</span><br></pre></td></tr></table></figure>
+
+<h6 id="响应中返回-JSON"><a href="#响应中返回-JSON" class="headerlink" title="响应中返回 JSON"></a>响应中返回 JSON</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK content-type: application/json; charset=utf-8 content-length: 234</span><br><span class="line">[&#123;&quot;login&quot;:&quot;mojombo&quot;,&quot;id&quot;:1,&quot;node_id&quot;:&quot;MDQ6VXNl cjE=&quot;,&quot;avatar_url&quot;:&quot;https://avatars0.githubuse rcontent.com/u/1?v=4&quot;,&quot;gravat......</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>请求中提交二进制内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST /user/1/avatar HTTP/1.1 Host: hencoder.com Content-Type: image/jpeg Content-Length: 1575</span><br><span class="line">JFIFHH9......</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h6 id="对应-Retroﬁt-的代码：-2"><a href="#对应-Retroﬁt-的代码：-2" class="headerlink" title="对应 Retroﬁt 的代码："></a>对应 Retroﬁt 的代码：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@POST(&quot;users/&#123;id&#125;/avatar&quot;) Call&lt;User&gt; updateAvatar(@Path(&quot;id&quot;) String id, @Body RequestBody avatar);</span><br><span class="line">...</span><br><span class="line">RequestBody avatarBody = RequestBody.create(MediaType.parse(&quot;image/jpeg&quot;), avatarFile); api.updateAvatar(id, avatarBody)</span><br></pre></td></tr></table></figure>
+
+<h6 id="相应中返回二进制内容"><a href="#相应中返回二进制内容" class="headerlink" title="相应中返回二进制内容"></a>相应中返回二进制内容</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK content-type: image/jpeg content-length: 1575</span><br><span class="line">JFIFHH9......</span><br></pre></td></tr></table></figure>
+
+<h6 id="Content-Length"><a href="#Content-Length" class="headerlink" title="Content-Length"></a>Content-Length</h6><p>指定 Body 的长度（字节)</p>
+<h6 id="Transfer-chunked-分块传输编码-Chunked-Transfer-Encoding"><a href="#Transfer-chunked-分块传输编码-Chunked-Transfer-Encoding" class="headerlink" title="Transfer: chunked (分块传输编码 Chunked Transfer Encoding)"></a>Transfer: chunked (分块传输编码 Chunked Transfer Encoding)</h6><p>用于当响应发起时，内容长度还没能确定的情况下。和 Content-Length 不同时使用。用途是尽早给 出响应，减少用户等待。</p>
+<ul>
+<li>格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK Content-Type: text/html Transfer-Encoding: chunked</span><br><span class="line">4 Chun 9 ked Trans 12 fer Encoding 0</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h6 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h6><p>指定重定向的目标 URL </p>
+<h5 id="User-Agent"><a href="#User-Agent" class="headerlink" title="User-Agent"></a>User-Agent</h5><p>用户代理，即是谁实际发送请求、接受响应的，例例如手机浏览器、某款手机 App。</p>
+<h5 id="Range-Accept-Range"><a href="#Range-Accept-Range" class="headerlink" title="Range / Accept-Range"></a>Range / Accept-Range</h5><p>按范围取数据</p>
+<ul>
+<li>Accept-Range: bytes 响应报文中出现，表示服务器支持按字节来取范围数据 </li>
+<li>Range: bytes=<start>-<end> 请求报文中出现，表示要取哪段数据 </end></start></li>
+<li>Content-Range:<start>-<end>/total 响应报文中出现，表示发送的是哪段数据<br>作⽤用：断点续传、多线程下载<h5 id="其他-Headers"><a href="#其他-Headers" class="headerlink" title="其他 Headers"></a>其他 Headers</h5></end></start></li>
+<li>Accept: 客户端能接受的数据类型。如 text/html<ul>
+<li>Accept-Charset: 客户端接受的字符集。如 utf-8 </li>
+</ul>
+</li>
+<li>Accept-Encoding: 客户端接受的压缩编码类型。如 gzip </li>
+<li>Content-Encoding：压缩类型。如 gzip </li>
+</ul>
+<h5 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h5><p>作用：在客户端或中间网络节点缓存数据，降低从服务器取数据的频率，以提高网络性能。</p>
+<h6 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h6><p>REST 的定义众说纷纭，没有统⼀一答案。<br>扔物线的观点：REST HTTP 即正确使用 HTTP。包括:</p>
+<ul>
+<li>使用资源的格式来定义 URL</li>
+<li>规范地使用 method 来定义网络请求操作 </li>
+<li>规范地使用 status code 来表示响应状态 </li>
+<li>其他符合 HTTP 规范的设计准则</li>
+</ul>
+
         
       
     </div>
