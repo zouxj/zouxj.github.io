@@ -259,7 +259,7 @@
                 
               
 
-              <time title="Created: 2019-10-22 10:40:02 / Modified: 14:00:23" itemprop="dateCreated datePublished" datetime="2019-10-22T10:40:02+08:00">2019-10-22</time>
+              <time title="Created: 2019-10-22 10:40:02 / Modified: 14:13:16" itemprop="dateCreated datePublished" datetime="2019-10-22T10:40:02+08:00">2019-10-22</time>
             </span>
           
             
@@ -297,10 +297,16 @@
 <li>优点：加密计算小,速度快，适合对大量数据进行加密的场景</li>
 <li>缺点：密钥传输泄露问题</li>
 </ul>
+<p><img src="https://i.imgur.com/fhNhlVJ.png" alt></p>
 <h5 id="栗子：AES"><a href="#栗子：AES" class="headerlink" title="栗子：AES"></a>栗子：AES</h5><ul>
 <li>AES是一个迭代的、对称密钥分组的密码，它可以使用128、192和256位密钥，并且用128位（16字节）分组加密和解密数据。</li>
 </ul>
+<p>#####AES加密  </p>
 <figure class="highlight plain"><figcaption><span>static String encrypt(String text) throws Exception &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> 	// 私钥 AES固定格式为128/192/256bits.即：16/24/32bytes。DES固定格式为128bits，即8bytes。</span><br><span class="line">	String key = &quot;aaaaaaaaaaaaaaaa&quot;;</span><br><span class="line">	// 初始化向量参数，AES 为16bytes. DES 为8bytes</span><br><span class="line">	String iv =&quot;bbbbbbbbbbbbbbbb&quot;; </span><br><span class="line">	// 两个参数，第一个为私钥字节数组， 第二个为加密方式AES或者DES</span><br><span class="line">	Key keySpec = new SecretKeySpec(key.getBytes(), &quot;AES&quot;); </span><br><span class="line">	IvParameterSpec ivSpec = new IvParameterSpec(iv.getBytes());</span><br><span class="line">	// 实例化加密类，参数为加密方式，要写全</span><br><span class="line">	Cipher cipher = Cipher.getInstance(&quot;AES/CBC/PKCS5Padding&quot;);</span><br><span class="line">	// 初始化，此方法可以采用三种方式，按服务器要求来添加。（1）无第三个参数（2）第三个参数为SecureRandom</span><br><span class="line">	//（3）采用此代码中的IVParameterSpec</span><br><span class="line">	cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);   </span><br><span class="line">// random = new SecureRandom();中random对象，随机数。(AES不可采用这种方法)</span><br><span class="line">	// cipher.init(Cipher.ENCRYPT_MODE, keySpec);</span><br><span class="line">	// SecureRandom random = new SecureRandom();</span><br><span class="line">	// cipher.init(Cipher.ENCRYPT_MODE, keySpec, random);</span><br><span class="line">	byte[] bytes = cipher.doFinal(text.getBytes());// 加密操作,返回加密后的字节数组，然后需要编码。主要编解码方式有Base64, HEX, UUE,</span><br><span class="line">	// 7bit等等。此处看服务器需要什么编码方式</span><br><span class="line">	String result = Base64.encodeToString(bytes, Base64.DEFAULT);</span><br><span class="line">	return result;</span><br></pre></td></tr></table></figure>
+
+<p>#####AES解密<br>    public static String decrypt(String text) throws Exception {<br>        String keySpec = “aaaaaaaaaaaaaaaa”;<br>        String iv = “bbbbbbbbbbbbbbbb”;<br>        byte[] textBytes = Base64.decode(text.getBytes(), Base64.DEFAULT);<br>        IvParameterSpec ivSpec = new IvParameterSpec(iv.getBytes());<br>        Key key = new SecretKeySpec(keySpec.getBytes(), “AES”);<br>        Cipher cipher = Cipher.getInstance(“AES/CBC/PKCS5Padding”);<br>        cipher.init(Cipher.DECRYPT_MODE, key, ivSpec); // 与加密时不同MODE:Cipher.DECRYPT_MODE<br>        String result = cipher.doFinal(textBytes);<br>        return result; }</p>
+<p>#非对称加密</p>
+
         
       
     </div>
