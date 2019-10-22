@@ -259,7 +259,7 @@
                 
               
 
-              <time title="Created: 2019-10-22 10:40:02 / Modified: 14:45:42" itemprop="dateCreated datePublished" datetime="2019-10-22T10:40:02+08:00">2019-10-22</time>
+              <time title="Created: 2019-10-22 10:40:02 / Modified: 14:52:14" itemprop="dateCreated datePublished" datetime="2019-10-22T10:40:02+08:00">2019-10-22</time>
             </span>
           
             
@@ -322,7 +322,7 @@
         // 7bit等等。此处看服务器需要什么编码方式
         String result = Base64.encodeToString(bytes, Base64.DEFAULT);
         return result;</code></p>
-<p>#####AES解密<br><code>public static String decrypt(String text) throws Exception {
+<h5 id="AES解密"><a href="#AES解密" class="headerlink" title="AES解密"></a>AES解密</h5><p><code>public static String decrypt(String text) throws Exception {
         String keySpec = &quot;aaaaaaaaaaaaaaaa&quot;;
         String iv = &quot;bbbbbbbbbbbbbbbb&quot;;
         byte[] textBytes = Base64.decode(text.getBytes(), Base64.DEFAULT);
@@ -332,8 +332,7 @@
         cipher.init(Cipher.DECRYPT_MODE, key, ivSpec); // 与加密时不同MODE:Cipher.DECRYPT_MODE
         String result = cipher.doFinal(textBytes);
         return result; }</code></p>
-<p>#非对称加密</p>
-
+<h1 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h1>
         
       
     </div>

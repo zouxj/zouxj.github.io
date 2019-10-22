@@ -65,7 +65,7 @@
 <meta property="og:description" content="加密对称加密  对称双方使用同一个密钥,使用加密算法配上合适的密钥来加密，解密时使用加密过程的完全逆过程配合密钥来进行解密 经典算法：DES,AES 优点：加密计算小,速度快，适合对大量数据进行加密的场景 缺点：密钥传输泄露问题  栗子：AES AES是一个迭代的、对称密钥分组的密码，它可以使用128、192和256位密钥，并且用128位（16字节）分组加密和解密数据。  AES加密public">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.imgur.com/n8h9Om7.png">
-<meta property="og:updated_time" content="2019-10-22T06:45:42.347Z">
+<meta property="og:updated_time" content="2019-10-22T06:52:14.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加密 编码 hash">
 <meta name="twitter:description" content="加密对称加密  对称双方使用同一个密钥,使用加密算法配上合适的密钥来加密，解密时使用加密过程的完全逆过程配合密钥来进行解密 经典算法：DES,AES 优点：加密计算小,速度快，适合对大量数据进行加密的场景 缺点：密钥传输泄露问题  栗子：AES AES是一个迭代的、对称密钥分组的密码，它可以使用128、192和256位密钥，并且用128位（16字节）分组加密和解密数据。  AES加密public">
@@ -262,7 +262,7 @@
                 
               
 
-              <time title="Created: 2019-10-22 10:40:02 / Modified: 14:45:42" itemprop="dateCreated datePublished" datetime="2019-10-22T10:40:02+08:00">2019-10-22</time>
+              <time title="Created: 2019-10-22 10:40:02 / Modified: 14:52:14" itemprop="dateCreated datePublished" datetime="2019-10-22T10:40:02+08:00">2019-10-22</time>
             </span>
           
             
@@ -333,7 +333,7 @@
         // 7bit等等。此处看服务器需要什么编码方式
         String result = Base64.encodeToString(bytes, Base64.DEFAULT);
         return result;</code></p>
-<p>#####AES解密<br><code>public static String decrypt(String text) throws Exception {
+<h5 id="AES解密"><a href="#AES解密" class="headerlink" title="AES解密"></a>AES解密</h5><p><code>public static String decrypt(String text) throws Exception {
         String keySpec = &quot;aaaaaaaaaaaaaaaa&quot;;
         String iv = &quot;bbbbbbbbbbbbbbbb&quot;;
         byte[] textBytes = Base64.decode(text.getBytes(), Base64.DEFAULT);
@@ -343,8 +343,7 @@
         cipher.init(Cipher.DECRYPT_MODE, key, ivSpec); // 与加密时不同MODE:Cipher.DECRYPT_MODE
         String result = cipher.doFinal(textBytes);
         return result; }</code></p>
-<p>#非对称加密</p>
-
+<h1 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h1>
     </div>
 
     
@@ -433,7 +432,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#加密"><span class="nav-number">1.</span> <span class="nav-text">加密</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对称加密"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">对称加密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#栗子：AES"><span class="nav-number">1.0.0.0.2.</span> <span class="nav-text">栗子：AES</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AES加密"><span class="nav-number">1.0.0.0.3.</span> <span class="nav-text">AES加密</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#加密"><span class="nav-number">1.</span> <span class="nav-text">加密</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对称加密"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">对称加密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#栗子：AES"><span class="nav-number">1.0.0.0.2.</span> <span class="nav-text">栗子：AES</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AES加密"><span class="nav-number">1.0.0.0.3.</span> <span class="nav-text">AES加密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AES解密"><span class="nav-number">1.0.0.0.4.</span> <span class="nav-text">AES解密</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非对称加密"><span class="nav-number">2.</span> <span class="nav-text">非对称加密</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
