@@ -65,7 +65,11 @@
 <meta property="og:description" content="加密对称加密  对称双方使用同一个密钥,使用加密算法配上合适的密钥来加密，解密时使用加密过程的完全逆过程配合密钥来进行解密 经典算法：DES,AES 优点：加密计算小,速度快，适合对大量数据进行加密的场景 缺点：密钥传输泄露问题  栗子：AES AES是一个迭代的、对称密钥分组的密码，它可以使用128、192和256位密钥，并且用128位（16字节）分组加密和解密数据。  AES加密public">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/18796130-67320c1e320d78ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-10-22T08:53:05.128Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/18796130-dbdd559c805ebc95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/18796130-945887af9480a31b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/18796130-589ceefda6ac5b89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/18796130-f60d7e79329dbbc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-10-23T03:12:39.884Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加密 编码 hash">
 <meta name="twitter:description" content="加密对称加密  对称双方使用同一个密钥,使用加密算法配上合适的密钥来加密，解密时使用加密过程的完全逆过程配合密钥来进行解密 经典算法：DES,AES 优点：加密计算小,速度快，适合对大量数据进行加密的场景 缺点：密钥传输泄露问题  栗子：AES AES是一个迭代的、对称密钥分组的密码，它可以使用128、192和256位密钥，并且用128位（16字节）分组加密和解密数据。  AES加密public">
@@ -262,11 +266,19 @@
                 
               
 
-              <time title="Created: 2019-10-22 10:40:02 / Modified: 16:53:05" itemprop="dateCreated datePublished" datetime="2019-10-22T10:40:02+08:00">2019-10-22</time>
+              <time title="Created: 2019-10-22 10:40:02" itemprop="dateCreated datePublished" datetime="2019-10-22T10:40:02+08:00">2019-10-22</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-23 11:12:39" itemprop="dateModified" datetime="2019-10-23T11:12:39+08:00">2019-10-23</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -331,7 +343,7 @@
     byte[] bytes = cipher.doFinal(text.getBytes());// 加密操作,返回加密后的字节数组，然后需要编码。主要编解码方式有Base64, HEX, UUE,
     // 7bit等等。此处看服务器需要什么编码方式
     String result = Base64.encodeToString(bytes, Base64.DEFAULT);
-    return result; </code></pre><h5 id="AES解密"><a href="#AES解密" class="headerlink" title="AES解密"></a>AES解密</h5><pre><code>public static String decrypt(String text) throws Exception {
+    return result;}</code></pre><h5 id="AES解密"><a href="#AES解密" class="headerlink" title="AES解密"></a>AES解密</h5><pre><code>public static String decrypt(String text) throws Exception {
     String keySpec = &quot;aaaaaaaaaaaaaaaa&quot;;
     String iv = &quot;bbbbbbbbbbbbbbbb&quot;;
     byte[] textBytes = Base64.decode(text.getBytes(), Base64.DEFAULT);
@@ -340,7 +352,45 @@
     Cipher cipher = Cipher.getInstance(&quot;AES/CBC/PKCS5Padding&quot;);
     cipher.init(Cipher.DECRYPT_MODE, key, ivSpec); // 与加密时不同MODE:Cipher.DECRYPT_MODE
     String result = cipher.doFinal(textBytes);
-    return result; }</code></pre><h1 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h1>
+    return result; }</code></pre><h5 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h5><ul>
+<li>原理：使用公钥对数据进行加密得到密文；使用私钥解密得到明文</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/18796130-dbdd559c805ebc95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p> 应用场景：</p>
+<p> 1.数字签名验证<br>使用私钥签名，发送签名数据和原数据，采用公钥验证，如果验证后数据等于发过来的原数据则正确，反之</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18796130-945887af9480a31b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>加密签名：发送方使用对方公钥加密得到密文，在自己的私钥签名，接收方使用自己的私钥解密，用公钥验证</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18796130-589ceefda6ac5b89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li>经典算法： RSA，DSA</li>
+</ul>
+<h5 id="BASE64"><a href="#BASE64" class="headerlink" title="BASE64"></a>BASE64</h5><ul>
+<li>将二进制数据转换成由64个字符组成的字符串编码算法</li>
+<li>用途：让原数据具有字符串所具有的的特性，如可以放在URL中传输，可以保存到文本文件，可以通过普通的聊天软件进行文本传输</li>
+<li>把原本人眼可以读懂的字符串变成读不懂的字符串，降低偷窥风险</li>
+</ul>
+<h5 id="压缩与解压缩"><a href="#压缩与解压缩" class="headerlink" title="压缩与解压缩"></a>压缩与解压缩</h5><ul>
+<li>压缩：把数据换一种方式来存储，以减少存储空间</li>
+<li>解压缩：把压缩后的数据还原成原先的数据，以便使用</li>
+<li>常见压缩算法：MP3,JEPG,DEELATE</li>
+</ul>
+<h1 id="HASH"><a href="#HASH" class="headerlink" title="HASH"></a>HASH</h1><ul>
+<li><p>定义：把任意数据转换成指定大小的范围（通常很小）的数据</p>
+</li>
+<li><p>左右：摘要，数字指纹</p>
+</li>
+<li><p>经典算法：MD5,SHA1,SHA256</p>
+</li>
+<li><p>实质用途</p>
+<ul>
+<li>数据完整性验证  </li>
+<li>快速查找 </li>
+<li>隐私保护</li>
+</ul>
+</li>
+</ul>
+<h5 id="加上hash减小签名数据"><a href="#加上hash减小签名数据" class="headerlink" title="加上hash减小签名数据"></a>加上hash减小签名数据</h5><p><img src="https://upload-images.jianshu.io/upload_images/18796130-f60d7e79329dbbc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+
     </div>
 
     
@@ -429,7 +479,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#加密"><span class="nav-number">1.</span> <span class="nav-text">加密</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对称加密"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">对称加密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#栗子：AES"><span class="nav-number">1.0.0.0.2.</span> <span class="nav-text">栗子：AES</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AES加密"><span class="nav-number">1.0.0.0.3.</span> <span class="nav-text">AES加密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AES解密"><span class="nav-number">1.0.0.0.4.</span> <span class="nav-text">AES解密</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非对称加密"><span class="nav-number">2.</span> <span class="nav-text">非对称加密</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#加密"><span class="nav-number">1.</span> <span class="nav-text">加密</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对称加密"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">对称加密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#栗子：AES"><span class="nav-number">1.0.0.0.2.</span> <span class="nav-text">栗子：AES</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AES加密"><span class="nav-number">1.0.0.0.3.</span> <span class="nav-text">AES加密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AES解密"><span class="nav-number">1.0.0.0.4.</span> <span class="nav-text">AES解密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#非对称加密"><span class="nav-number">1.0.0.0.5.</span> <span class="nav-text">非对称加密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BASE64"><span class="nav-number">1.0.0.0.6.</span> <span class="nav-text">BASE64</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#压缩与解压缩"><span class="nav-number">1.0.0.0.7.</span> <span class="nav-text">压缩与解压缩</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HASH"><span class="nav-number">2.</span> <span class="nav-text">HASH</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#加上hash减小签名数据"><span class="nav-number">2.0.0.0.1.</span> <span class="nav-text">加上hash减小签名数据</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
